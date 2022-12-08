@@ -56,6 +56,9 @@
 		0186938829422B020047B01B /* Instagram */ = {
 			isa = PBXGroup;
 			children = (
+				018693A029422D220047B01B /* Data */,
+				0186939F29422D170047B01B /* Presentation */,
+				0186939E29422D0E0047B01B /* Domain */,
 				0186938929422B020047B01B /* AppDelegate.swift */,
 				0186938B29422B020047B01B /* SceneDelegate.swift */,
 				0186938D29422B020047B01B /* ViewController.swift */,
@@ -65,6 +68,51 @@
 				0186939729422B030047B01B /* Info.plist */,
 			);
 			path = Instagram;
+			sourceTree = "<group>";
+		};
+		0186939E29422D0E0047B01B /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		0186939F29422D170047B01B /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				018693A329422EDD0047B01B /* Model */,
+				018693A229422ECD0047B01B /* View */,
+				018693A129422EB30047B01B /* ViewModel */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		018693A029422D220047B01B /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		018693A129422EB30047B01B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		018693A229422ECD0047B01B /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		018693A329422EDD0047B01B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
