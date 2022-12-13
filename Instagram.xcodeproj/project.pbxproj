@@ -19,6 +19,7 @@
 		018693B529426A190047B01B /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018693B429426A190047B01B /* NotificationViewController.swift */; };
 		018693B829426A4A0047B01B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018693B729426A4A0047B01B /* ProfileViewController.swift */; };
 		018693BB29426A6D0047B01B /* ImageSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018693BA29426A6D0047B01B /* ImageSelectorViewController.swift */; };
+		018693BD294897D80047B01B /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018693BC294897D80047B01B /* FeedCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		018693B429426A190047B01B /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		018693B729426A4A0047B01B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		018693BA29426A6D0047B01B /* ImageSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelectorViewController.swift; sourceTree = "<group>"; };
+		018693BC294897D80047B01B /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				018693AE294269920047B01B /* FeedViewController.swift */,
+				018693BC294897D80047B01B /* FeedCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				018693B2294269E10047B01B /* SearchViewController.swift in Sources */,
+				018693BD294897D80047B01B /* FeedCell.swift in Sources */,
 				0186938E29422B020047B01B /* ViewController.swift in Sources */,
 				0186938A29422B020047B01B /* AppDelegate.swift in Sources */,
 				018693B529426A190047B01B /* NotificationViewController.swift in Sources */,

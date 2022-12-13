@@ -27,18 +27,21 @@ final class FeedViewController: UIViewController {
     }
     
     func registerCell() {
-        collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "reuseIdentifier")
+        collectionView?.register(FeedCell.self, forCellWithReuseIdentifier: FeedCell.identifier)
     }
 }
 
-extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reuseIdentifier", for: indexPath)
-        cell.backgroundColor = .green
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedCell.identifier, for: indexPath) as? FeedCell else { fatalError("Unexpected indexPath") }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: self.view.frame.width, height: 200)
     }
 }
