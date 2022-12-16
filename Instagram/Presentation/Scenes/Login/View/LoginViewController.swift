@@ -43,6 +43,7 @@ final class LoginViewController: UIViewController {
         setupStack()
         setupHelpButton()
         setupsignupButton()
+        setupLoginButton()
     }
     
     func setupViewColor() {
@@ -78,19 +79,28 @@ final class LoginViewController: UIViewController {
     
     func setupHelpButton() {
         helpButton.setupButton(firtText: "Forgot your password?", boldText: "Get help signing in")
-        helpButton.addTarget(self, action: #selector(navigateToSignup), for: .touchUpInside)
+        helpButton.addTarget(self, action: #selector(navigateToRegistration), for: .touchUpInside)
+    }
+    
+    func setupLoginButton() {
+        loginButton.addTarget(self, action: #selector(navigateToRegistration), for: .touchUpInside)
     }
     
     func setupsignupButton() {
         view.addSubview(signupButton)
         signupButton.setupButton(firtText: "Dont have an account?", boldText: "Sign up")
-        signupButton.addTarget(self, action: #selector(navigateToSignup), for: .touchUpInside)
+        signupButton.addTarget(self, action: #selector(navigateToRegistration), for: .touchUpInside)
         signupButton.translatesAutoresizingMaskIntoConstraints = false
         signupButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30).isActive = true
         signupButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30).isActive = true
         signupButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
     }
     
-    @objc func navigateToSignup() {}
+    // MARK: - Action
+    
+    @objc func navigateToRegistration() {
+        let registrationVC = RegistrationViewController()
+        navigationController?.pushViewController(registrationVC, animated: true)
+    }
 }
 
