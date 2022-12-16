@@ -24,10 +24,11 @@ final class LoginViewController: UIViewController {
         return password
     }()
     
-    private let loginButton: UIButton = {
+    private lazy var loginButton: UIButton = {
         let login = UIButton(type: .system)
         login.setAttributedTitle(NSAttributedString(string: "Log In", attributes: [.foregroundColor: UIColor(white: 0, alpha: 0.9), .font: UIFont.boldSystemFont(ofSize: 16)]), for: .normal)
         login.backgroundColor = UIColor(white: 0, alpha: 0.05)
+        login.addTarget(self, action: #selector(navigateToRegistration), for: .touchUpInside)
         return login
     }()
     
@@ -43,7 +44,6 @@ final class LoginViewController: UIViewController {
         setupStack()
         setupHelpButton()
         setupsignupButton()
-        setupLoginButton()
     }
     
     func setupViewColor() {
@@ -80,10 +80,6 @@ final class LoginViewController: UIViewController {
     func setupHelpButton() {
         helpButton.setupButton(firtText: "Forgot your password?", boldText: "Get help signing in")
         helpButton.addTarget(self, action: #selector(navigateToRegistration), for: .touchUpInside)
-    }
-    
-    func setupLoginButton() {
-        loginButton.addTarget(self, action: #selector(navigateToRegistration), for: .touchUpInside)
     }
     
     func setupsignupButton() {
