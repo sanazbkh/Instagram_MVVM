@@ -10,9 +10,8 @@ import UIKit
 
 final class LoginViewController: UIViewController {
     private let insta = UIImageView()
-    private let stackView = UIStackView()
-    private let helpButton = UIButton()
-    private let signupButton = UIButton()
+    private let helpButton = UIButton(type: .system)
+    private let signupButton = UIButton(type: .system)
     private let email: UITextField = {
         let email = GenericTextField(placeholder: "Email")
         return email
@@ -26,8 +25,8 @@ final class LoginViewController: UIViewController {
     }()
     
     private let loginButton: UIButton = {
-        let login = UIButton()
-        login.setAttributedTitle(NSAttributedString(string: "Log In", attributes: [.foregroundColor: UIColor(white: 0, alpha: 0.9)]), for: .normal)
+        let login = UIButton(type: .system)
+        login.setAttributedTitle(NSAttributedString(string: "Log In", attributes: [.foregroundColor: UIColor(white: 0, alpha: 0.9), .font: UIFont.boldSystemFont(ofSize: 16)]), for: .normal)
         login.backgroundColor = UIColor(white: 0, alpha: 0.05)
         return login
     }()
@@ -65,10 +64,8 @@ final class LoginViewController: UIViewController {
     }
     
     func setupStack() {
+        let stackView = UIStackView(arrangedSubviews: [email,password, loginButton, helpButton])
         view.addSubview(stackView)
-        stackView.addArrangedSubview(email)
-        stackView.addArrangedSubview(password)
-        stackView.addArrangedSubview(loginButton)
         stackView.axis = .vertical
         stackView.spacing = 20
         stackView.distribution = .fillEqually
@@ -79,31 +76,19 @@ final class LoginViewController: UIViewController {
         stackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30).isActive = true
     }
     
-    func configButton(button: UIButton, normalText: String, boldText: String) {
-        view.addSubview(button)
-        let attributed: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(white: 1, alpha: 0.5), .font: UIFont.systemFont(ofSize: 13)]
-        let boldAttributed: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(white: 1, alpha: 0.5), .font: UIFont.boldSystemFont(ofSize: 13)]
-        let attributedTitle = NSMutableAttributedString(string: normalText, attributes: attributed)
-        attributedTitle.append(NSAttributedString(string: boldText, attributes: boldAttributed))
-        button.setAttributedTitle(attributedTitle, for: .normal)
-    }
-    
     func setupHelpButton() {
-        configButton(button: helpButton, normalText: "Forgot your password? ", boldText: "Get help signing in")
+        helpButton.setupButton(firtText: "Forgot your password?", boldText: "Get help signing in")
         helpButton.addTarget(self, action: #selector(navigateToSignup), for: .touchUpInside)
-        helpButton.translatesAutoresizingMaskIntoConstraints = false
-        helpButton.topAnchor.constraint(equalTo: self.loginButton.bottomAnchor, constant: 10).isActive = true
-        helpButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30).isActive = true
-        helpButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30).isActive = true
     }
     
     func setupsignupButton() {
-        configButton(button: signupButton, normalText: "Dont have an account? ", boldText: "Sign up")
+        view.addSubview(signupButton)
+        signupButton.setupButton(firtText: "Dont have an account?", boldText: "Sign up")
         signupButton.addTarget(self, action: #selector(navigateToSignup), for: .touchUpInside)
         signupButton.translatesAutoresizingMaskIntoConstraints = false
         signupButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30).isActive = true
         signupButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30).isActive = true
-        signupButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20).isActive = true
+        signupButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
     }
     
     @objc func navigateToSignup() {}
