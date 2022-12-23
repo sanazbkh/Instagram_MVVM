@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 final class LoginViewController: UIViewController {
+    private var loginViewModel = LoginViewModel()
     private let insta = UIImageView()
     private let helpButton = UIButton(type: .system)
     private let signupButton = UIButton(type: .system)
@@ -27,8 +28,9 @@ final class LoginViewController: UIViewController {
     private lazy var loginButton: UIButton = {
         let login = UIButton(type: .system)
         login.setAttributedTitle(NSAttributedString(string: "Log In", attributes: [.foregroundColor: UIColor(white: 0, alpha: 0.9), .font: UIFont.boldSystemFont(ofSize: 16)]), for: .normal)
-        login.backgroundColor = UIColor(white: 0, alpha: 0.05)
+        login.backgroundColor = .white.withAlphaComponent(0.05)
         login.addTarget(self, action: #selector(navigateToRegistration), for: .touchUpInside)
+        login.isEnabled = false
         return login
     }()
     
@@ -37,6 +39,7 @@ final class LoginViewController: UIViewController {
         self.view.backgroundColor = .white
         setupViewColor()
         setupViews()
+        configNotificationObserver()
     }
     
     func setupViews() {
@@ -44,14 +47,6 @@ final class LoginViewController: UIViewController {
         setupStack()
         setupHelpButton()
         setupsignupButton()
-    }
-    
-    func setupViewColor() {
-        let gradiant = CAGradientLayer()
-        gradiant.colors = [UIColor.white.cgColor, UIColor.black.cgColor]
-        gradiant.locations  = [0, 1]
-        view.layer.addSublayer(gradiant)
-        gradiant.frame = view.frame
     }
     
     func setupInsta() {
@@ -92,11 +87,34 @@ final class LoginViewController: UIViewController {
         signupButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
     }
     
-    // MARK: - Action
+    // MARK: - Actions
     
     @objc func navigateToRegistration() {
         let registrationVC = RegistrationViewController()
         navigationController?.pushViewController(registrationVC, animated: true)
     }
+    
+    @objc func textDidChange(sender: UITextField) {
+        switch sender {
+        case email:
+            loginViewModel.email = sender.text
+        case password:
+            loginViewModel.password = sender.text
+        default:
+            print("error in textfield")
+        }
+        updateForm()
+    }
+    
+    func configNotificationObserver() {
+        email.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        password.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+    }
 }
 
+extension LoginViewController: FormViewModelProtocol{
+    func updateForm() {
+        loginButton.backgroundColor = loginViewModel.changeButtonColor()
+        loginButton.isEnabled = loginViewModel.formIsValid
+    }
+}
