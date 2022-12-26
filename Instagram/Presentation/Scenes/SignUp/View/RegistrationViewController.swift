@@ -67,6 +67,7 @@ final class RegistrationViewController: UIViewController {
         profileImage.setImage(UIImage(named: "plus_photo"), for: .normal)
         profileImage.tintColor = .black
         view.addSubview(profileImage)
+        profileImage.addTarget(self, action: #selector(selectProfile), for: .touchUpInside)
         profileImage.translatesAutoresizingMaskIntoConstraints = false
         profileImage.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
         profileImage.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
@@ -128,11 +129,29 @@ final class RegistrationViewController: UIViewController {
     @objc func navigateToHome() {
         print("hhhhhhh")
     }
+    
+    @objc func selectProfile() {
+        let picker = UIImagePickerController()
+        picker.allowsEditing = true
+        picker.delegate = self
+        present(picker, animated: true)
+    }
 }
 
 extension RegistrationViewController: FormViewModelProtocol {
     func updateForm() {
         signupButton.backgroundColor = registrationViewModel.changeButtonColor()
         signupButton.isEnabled = registrationViewModel.formIsValid
+    }
+}
+
+extension RegistrationViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let selectedImage =  info[.editedImage] as? UIImage else { return }
+        profileImage.layer.cornerRadius = profileImage.frame.width/2
+        profileImage.layer.masksToBounds = true
+        profileImage.layer.borderColor = UIColor.black.cgColor
+        profileImage.setImage(selectedImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        self.dismiss(animated: true)
     }
 }
